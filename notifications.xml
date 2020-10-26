@@ -2,7 +2,6 @@
   <component name="NotificationConfiguration">
     <notification groupId="Build sync orphan modules" displayType="NONE" />
     <notification groupId="Debugger messages" displayType="TOOL_WINDOW" />
-    <notification groupId="Emulator" shouldLog="false" />
     <notification groupId="Find in Path" displayType="TOOL_WINDOW" />
     <notification groupId="Find Problems" displayType="STICKY_BALLOON" />
     <notification groupId="Gradle Import" displayType="STICKY_BALLOON" />
