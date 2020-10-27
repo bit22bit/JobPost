@@ -13,7 +13,7 @@
         android:layout_above="@+id/editText"
         android:layout_alignParentTop="true"
         android:layout_marginTop="51dp"
-        android:text="JobPos"
+        android:text="JobPost"
         android:textAlignment="center"
         android:textSize="40dp"
         android:textStyle="bold"
