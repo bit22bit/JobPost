@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="$30 an hour" />
+                    android:text="$35 an hour" />
 
                 <TextView
                     android:layout_width="match_parent"
