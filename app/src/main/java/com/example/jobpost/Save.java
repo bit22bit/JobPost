@@ -39,50 +39,46 @@ public class Save extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
+
         tread = findViewById(R.id.read);
-        bread = findViewById(R.id.readdata);
+//        bread = findViewById(R.id.readdata);
         db = FirebaseFirestore.getInstance();
-        bread.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getdata();
-            }
-        });
-
-
-
-    }
-    public void getdata(){
-        Log.v("one","in method") ;
-
+//        bread.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getdata();
+//            }
+//        });
 
         db.collection("Jobdetails")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Log.v("one","inclass") ;
                         if (task.isSuccessful()){
-                            Log.v("Teo","inif") ;
-
                             String results="";
-                            for (DocumentSnapshot document: task.getResult()){
-                                Log.d("result", document.getId() + " => " + document.getData());
-                                job job= document.toObject(com.example.jobpost.job.class);
-                                results="Job Title: "+job.getJobtitle()+
+
+                            for(DocumentSnapshot document : task.getResult()){
+                                job job = document.toObject(job.class);
+                                results+=
+                                        "Job Title: "+job.getJobtitle()+
                                         "\nExperience in:"+job.getExperience()+
-                                        "\nPay Per hour:"+job.getPay();
+                                        "\nPay Per hour:"+job.getPay()+"\n\n";
                             }
                             tread.setText(results);
+                            }
+
+
                         }
+                    })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Error..."+e.getMessage(),Toast.LENGTH_LONG).show();
                     }
-                })  .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.v("error",""+e.getMessage()
-                );
-            }
-        });
+                });
+
+
 
     }
 }
