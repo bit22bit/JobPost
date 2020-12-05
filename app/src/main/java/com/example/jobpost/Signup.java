@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Signup extends AppCompatActivity {
     private FirebaseAuth myAuth;
     private Button joinus;
-    private TextView inputemail,inputpassword,inputname;
+    private TextView inputemail,inputpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
