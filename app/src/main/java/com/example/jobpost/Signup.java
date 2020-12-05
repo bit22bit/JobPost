@@ -26,10 +26,10 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        myAuth=FirebaseAuth.getInstance();
         inputemail=(EditText)findViewById(R.id.email);
         inputpassword=(EditText)findViewById(R.id.pass);
         joinus=(Button)findViewById(R.id.join);
+        myAuth=FirebaseAuth.getInstance();
 
         joinus.setOnClickListener(new View.OnClickListener() {
             @Override
