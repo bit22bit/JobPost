@@ -41,14 +41,7 @@ public class Save extends AppCompatActivity {
         setContentView(R.layout.activity_save);
 
         tread = findViewById(R.id.read);
-//        bread = findViewById(R.id.readdata);
         db = FirebaseFirestore.getInstance();
-//        bread.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getdata();
-//            }
-//        });
 
         db.collection("Jobdetails")
                 .get()

@@ -13,14 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-
         android:text="Data"/>
-
-    <Button
-        android:id="@+id/readdata"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Retreive Data" />
 
 </LinearLayout>
