@@ -29,7 +29,6 @@ public class Signup extends AppCompatActivity {
         myAuth=FirebaseAuth.getInstance();
         inputemail=(EditText)findViewById(R.id.email);
         inputpassword=(EditText)findViewById(R.id.pass);
-        inputname=(EditText)findViewById(R.id.name);
         joinus=(Button)findViewById(R.id.join);
 
         joinus.setOnClickListener(new View.OnClickListener() {
