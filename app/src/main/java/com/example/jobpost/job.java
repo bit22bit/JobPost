@@ -6,9 +6,7 @@ public class job implements Serializable {
 
     private  String jobtitle,experience,pay;
 
-    public job(){
-
-    }
+    public job(){}
 
     public job(String jobtitle, String experience, String pay) {
         this.jobtitle = jobtitle;
