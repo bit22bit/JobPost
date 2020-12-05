@@ -1,5 +1,6 @@
 package com.example.jobpost;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,22 +8,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Save extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private jobsAdapter adapter;
-    private List<job> jobList;
-    private ProgressBar progressBar;
+    private TextView tread;
+    private Button bread;
+
+    private FirebaseFirestore db;
 
 
 
@@ -30,51 +39,50 @@ public class Save extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save);
-
-        progressBar = findViewById(R.id.progressbar);
-
-        recyclerView = findViewById(R.id.recyclerview_products);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        jobList = new ArrayList<>();
-        adapter = new jobsAdapter(this, jobList);
-
-        recyclerView.setAdapter(adapter);
+        tread = findViewById(R.id.read);
+        bread = findViewById(R.id.readdata);
+        db = FirebaseFirestore.getInstance();
+        bread.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getdata();
+            }
+        });
 
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    }
+    public void getdata(){
+        Log.v("one","in method") ;
 
 
-        db.collection("Jobdetails").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                          @Override
-                                          public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                              Log.v("Curyy1   ", "   " + jobList.size());
+        db.collection("Jobdetails")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.v("one","inclass") ;
+                        if (task.isSuccessful()){
+                            Log.v("Teo","inif") ;
 
-
-                                              progressBar.setVisibility(View.GONE);
-
-                                              if (!queryDocumentSnapshots.isEmpty()) {
-
-                                                  List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-
-                                                  for (DocumentSnapshot d : list) {
-
-                                                      job j = d.toObject(job.class);
-                                                      Log.v("Curyy2   ", "   " + jobList.size());
-
-                                                      jobList.add(j);
-                                                      Log.v("Curyy3   ", "   " + jobList.size());
-
-                                                  }
-
-                                                  adapter.notifyDataSetChanged();
-
-                                              }
-                                          }
-
-                                      }
+                            String results="";
+                            for (DocumentSnapshot document: task.getResult()){
+                                Log.d("result", document.getId() + " => " + document.getData());
+                                job job= document.toObject(com.example.jobpost.job.class);
+                                results="Job Title: "+job.getJobtitle()+
+                                        "\nExperience in:"+job.getExperience()+
+                                        "\nPay Per hour:"+job.getPay();
+                            }
+                            tread.setText(results);
+                        }
+                    }
+                })  .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.v("error",""+e.getMessage()
                 );
+            }
+        });
 
-    }}
+    }
+}
