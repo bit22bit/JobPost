@@ -29,7 +29,6 @@ import java.util.List;
 public class Save extends AppCompatActivity {
 
     private TextView tread;
-    private Button bread;
 
     private FirebaseFirestore db;
 
