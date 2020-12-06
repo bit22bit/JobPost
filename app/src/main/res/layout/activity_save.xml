@@ -14,7 +14,8 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_navigation"
         android:text="Post"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:gravity="left"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
