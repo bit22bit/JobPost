@@ -12,6 +12,7 @@
         android:layout_margin="30dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:layout_above="@+id/button3"
         android:hint="jobname" />
 
     <EditText
@@ -21,6 +22,7 @@
         android:layout_margin="30dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:layout_above="@+id/button3"
         android:hint="experience" />
 
     <EditText
@@ -30,6 +32,7 @@
         android:layout_margin="30dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:layout_above="@+id/button3"
         android:hint="payperhour" />
 
     <Button
