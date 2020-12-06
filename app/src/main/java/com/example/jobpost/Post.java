@@ -17,7 +17,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Post extends AppCompatActivity {
-    private Button post,read;
+    private  post,read;
     private TextView job,experience,payperhour;
 
 
