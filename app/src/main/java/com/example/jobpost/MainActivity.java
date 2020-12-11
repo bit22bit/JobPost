@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(MainActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(MainActivity.this, Post.class);
+                                    Intent intent = new Intent(MainActivity.this, Save.class);
                                     startActivity(intent);
                                     finish();
                                 }
